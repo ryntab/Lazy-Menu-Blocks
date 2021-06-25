@@ -1,11 +1,9 @@
 # Lazy-Menu-Blocks
-Lazy Load Flatsome UX Blocks as Mega Menu Items, save bandwith with style. 😴
 <img src="https://github.com/ryntab/Lazy-Menu-Blocks/blob/main/Banner.jpg">
 
 `~Current Version:1.0~`
 
-# Lazy Menu Blocks 🔥
-
+# Lazy Load Flatsome UX Blocks as Mega Menu Items, save bandwith with style. 😴
 - Save bandwith, and lazy load mega menu UX blocks through the Rest-API
 - Supports Acato's WP REST Caching.
 
