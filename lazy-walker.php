@@ -195,7 +195,7 @@ public function start_el( &$output, $item, $depth = 0, $args = null, $id = 0 ) {
     // Check if menu item is in main menu.
     if ( $depth == 0 ) {
         // These lines adds your custom class and attribute.
-        $attributes .= ' class="so-lazy"';
+        $attributes .= ' id="so-lazy"';
     }
 
     // Image Column.
