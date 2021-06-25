@@ -18,13 +18,6 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-add_action('after_setup_theme', function(){
-    if ( 'Flatsome' == wp_get_theme()->name || 'Flatsome' == wp_get_theme()->parent_theme ) {
-        require 'lazy-walker.php';
-    }
-});
-
-
 class lazyMenu
 {
     function __construct() {
@@ -37,7 +30,7 @@ class lazyMenu
 
     public static function set_Walker($args){
         {
-            $args['walker'] = new get_lazy_navWalker::lazyMenuNav();
+            $args['walker'] = new lazyMenuNav();
             return $args;
         }
     }
@@ -79,9 +72,15 @@ class lazyMenu
     }
 
     public static function inline_control_script(){
-        wp_enqueue_script( 'Menu-Actions', plugin_dir_url( __FILE__ ) . 'assets/js/actions.js', 'jquery');
+        wp_enqueue_script( 'Menu-Actions', plugin_dir_url( __FILE__ ) . 'assets/js/actions.min.js', 'jquery');
     }
 
 }
 
 new lazyMenu();
+
+add_action('after_setup_theme', function(){
+    if ( 'Flatsome' == wp_get_theme()->name || 'Flatsome' == wp_get_theme()->parent_theme ) {
+        require 'lazy-walker.php';
+    }
+});

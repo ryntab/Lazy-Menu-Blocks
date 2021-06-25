@@ -195,7 +195,7 @@ public function start_el( &$output, $item, $depth = 0, $args = null, $id = 0 ) {
     // Check if menu item is in main menu.
     if ( $depth == 0 ) {
         // These lines adds your custom class and attribute.
-        $attributes .= ' class="nav-top-link"';
+        $attributes .= ' class="so-lazy"';
     }
 
     // Image Column.
@@ -257,7 +257,6 @@ public function start_el( &$output, $item, $depth = 0, $args = null, $id = 0 ) {
                 <div class="loading-spin centered">
                 </div>
             </div>';
-            //$item_output .= flatsome_apply_shortcode( 'block', array( 'id' => $block ) );
             $item_output .= '</div>';
         }
         if ( $design == 'custom-size' && ! empty( $width ) ) {
