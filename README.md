@@ -7,13 +7,6 @@
 - Save bandwith with style, and lazy load mega menu UX blocks on interaction through the Rest-API
 - Supports Acato's WP REST Caching.
 
-## 🚚 Running
-
-1. Clone this repository in your plugins folder
-1. Activate the plugin
-
-## 🎁 Preview
-
 <p align="center">
     <br/><br/>
     Made with 💜 by <a href="https://glidersports.com/">Glidersports Dev Team</a>.<br/>
