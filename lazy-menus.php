@@ -72,7 +72,7 @@ class lazyMenu
     }
 
     public static function inline_control_script(){
-        wp_enqueue_script( 'Menu-Actions', plugin_dir_url( __FILE__ ) . 'assets/js/actions.min.js', 'jquery');
+        wp_enqueue_script( 'Menu-Actions', plugin_dir_url( __FILE__ ) . 'assets/js/actions.min.js',  array('jquery'));
     }
 
 }
