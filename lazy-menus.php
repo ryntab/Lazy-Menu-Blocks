@@ -18,25 +18,40 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
+add_action('after_setup_theme', function(){
+    if ( 'Flatsome' == wp_get_theme()->name || 'Flatsome' == wp_get_theme()->parent_theme ) {
+        require 'lazy-walker.php';
+    }
+});
+
+
 class lazyMenu
 {
-    public function get_ux_block ($blockID)
-    {
-        $data['block'] = flatsome_apply_shortcode( 'block', array( 'id' => $blockID) );
-        return $data;
+    function __construct() {
+        add_filter('wp_nav_menu_args', array(get_called_class(), 'set_Walker' ));
+        add_action('nav_menu_link_attributes', array(get_called_class(), 'menu_block_data'), 10, 3 );
+        add_action('wp_enqueue_scripts', array(get_called_class(), 'inline_control_script'));
+        add_action('rest_api_init', array(get_called_class(), 'set_endpoint'));
+        add_action('wp_rest_cache/allowed_endpoints', array(get_called_class(), 'set_endpoint_cache'), 10, 1);
     }
 
+    public static function set_Walker($args){
+        {
+            $args['walker'] = new get_lazy_navWalker::lazyMenuNav();
+            return $args;
+        }
+    }
+    
     public function lazyMenuAPI($slug)
     {
         return lazyMenu::get_ux_block(intval($slug['id']));
     }
 
-    public static function init()
+    
+    public function get_ux_block ($blockID)
     {
-        add_action('rest_api_init', array(get_called_class(), 'set_endpoint'));
-        add_action('nav_menu_link_attributes', array(get_called_class(), 'menu_block_data'), 10, 3 );
-        add_action('wp_enqueue_scripts', array(get_called_class(), 'inline_control_script'));
-        add_action('wp_rest_cache/allowed_endpoints', array(get_called_class(), 'lazyMenu_endpoint_cache'), 10, 1);
+        $data['block'] = flatsome_apply_shortcode( 'block', array( 'id' => $blockID) );
+        return $data;
     }
 
     public static function set_endpoint()
@@ -56,20 +71,12 @@ class lazyMenu
         return $atts;
     }
 
-    public static function menu_output_filter($menu_obj, $menu)
-    {
-        var_dump($args);
-
-        return $item_output;
-    }
-
-    function lazyMenu_endpoint_cache($allowed_endpoints){
+    function set_endpoint_cache($allowed_endpoints){
         if (!isset($allowed_endpoints['lazyMenu/UX']) || !in_array('block', $allowed_endpoints['lazyMenu/UX'])) {
             $allowed_endpoints[ 'lazyMenu/UX' ][] = 'block';
         }
         return $allowed_endpoints;
     }
-
 
     public static function inline_control_script(){
         wp_enqueue_script( 'Menu-Actions', plugin_dir_url( __FILE__ ) . 'assets/js/actions.js', 'jquery');
@@ -77,11 +84,4 @@ class lazyMenu
 
 }
 
-add_action('after_setup_theme', 'lazy_Flatsome_Nav_Dropdown', 20);
-function lazy_Flatsome_Nav_Dropdown(){
-    if ( 'Flatsome' == wp_get_theme()->name || 'Flatsome' == wp_get_theme()->parent_theme ) {
-        lazyMenu::init();
-
-        require 'nav-walker.php';
-    }
-};
+new lazyMenu();
