@@ -14,8 +14,6 @@
 
 ## 🎁 Preview
 
-![screenshot]()
-
 <p align="center">
     <br/><br/>
     Made with 💜 by <a href="https://glidersports.com/">Glidersports Dev Team</a>.<br/>
