@@ -1,7 +1,7 @@
 # Flatsome - Lazy Menu Blocks
 <img src="https://github.com/ryntab/Lazy-Menu-Blocks/blob/main/Banner.jpg">
 
-`~Current Version:1.0~`
+`~Current Version:1.0.5~`
 
 # Lazy Load Flatsome Mega Menu UX Blocks 😴
 - Save bandwith with style, and lazy load mega menu UX blocks on interaction through the Rest-API
