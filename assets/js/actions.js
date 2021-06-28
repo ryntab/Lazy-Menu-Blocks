@@ -1,6 +1,6 @@
 (function ($) {
     $(document).ready(function () {
-        $('.menu-item-has-block').mouseenter(function hovering(){
+        $('.im-lazy').mouseenter(function hovering(){
             if ($(this).hasClass('loaded')) return;
             fetch(`${window.location.origin}/wp-json/lazyMenu/UX/block/${$(this).find('#so-lazy').data('block')}`)
             .then(response => response.json())

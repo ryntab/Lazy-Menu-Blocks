@@ -68,7 +68,7 @@ public function start_el( &$output, $item, $depth = 0, $args = null, $id = 0 ) {
         $classes[] = 'menu-item-design-' . $design;
 
         if ( $is_block_menu ) {
-            $classes[] = 'menu-item-has-block';
+            $classes[] = 'menu-item-has-block im-lazy';
         }
     }
 
