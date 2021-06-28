@@ -26,13 +26,32 @@ class lazyMenu
         add_action('wp_enqueue_scripts', array(get_called_class(), 'inline_control_script'));
         add_action('rest_api_init', array(get_called_class(), 'set_endpoint'));
         add_action('wp_rest_cache/allowed_endpoints', array(get_called_class(), 'set_endpoint_cache'), 10, 1);
+        add_filter('init', array(get_called_class(), 'flatsome_lazy_menu_settings'));
     }
 
-    public static function set_Walker($args){
-        {
-            $args['walker'] = new lazyMenuNav();
-            return $args;
+
+    public static function get_wp_menus()
+    {
+        $menusArray = array();
+        $menus = get_terms('nav_menu');
+        foreach ($menus as $menu) {
+            array_push($menusArray, $menu->name);
         }
+        return $menusArray;
+    }
+
+
+    public static function set_Walker($args)
+    {
+        $lazyMenus = get_theme_mod('lazy_menus');
+        var_dump($lazyMenus);
+        $menus = lazyMenu::get_wp_menus();
+        foreach ($lazyMenus as $lazyMenu) {
+            if ($lazyMenu = $menus[$lazyMenu]) {
+                $args['walker'] = new lazyMenuNav();
+            }
+        }
+        return $args; 
     }
     
     public function lazyMenuAPI($slug)
@@ -72,7 +91,21 @@ class lazyMenu
     }
 
     public static function inline_control_script(){
-        wp_enqueue_script( 'Menu-Actions', plugin_dir_url( __FILE__ ) . 'assets/js/actions.min.js',  array('jquery'));
+        $type = get_theme_mod('lazy_js_type');
+        $format = get_theme_mod('lazy_js_format');
+        $script = $type  ? 'actions' : 'actions.vanilla';
+        $scriptformat = $format ? '.min' : '';
+        wp_enqueue_script( 'Menu-Actions', plugin_dir_url( __FILE__ ) . 'assets/js/'.$script . $scriptformat.'.js',  array('jquery'));
+    }
+
+
+    public function flatsome_lazy_menu_settings()
+    {
+        if (current_user_can('manage_options')) {
+            if (is_customize_preview()) {
+                include_once(dirname(__FILE__) . '/inc/settings/options-flatsome-lazy-menus.php');
+            }
+        }
     }
 
 }
