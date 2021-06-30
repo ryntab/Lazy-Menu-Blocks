@@ -44,7 +44,6 @@ class lazyMenu
     public static function set_Walker($args)
     {
         $lazyMenus = get_theme_mod('lazy_menus');
-        var_dump($lazyMenus);
         $menus = lazyMenu::get_wp_menus();
         foreach ($lazyMenus as $lazyMenu) {
             if ($lazyMenu = $menus[$lazyMenu]) {
