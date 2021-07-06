@@ -1,4 +1,3 @@
-# Flatsome - Lazy Menu Blocks
 <img src="https://github.com/ryntab/Lazy-Menu-Blocks/blob/main/Banner.jpg">
 
 `~Current Version:1.0.5~`
