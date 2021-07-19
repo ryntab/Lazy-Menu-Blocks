@@ -8,7 +8,7 @@
 
 <p align="center">
     <br/><br/>
-    Made with 💜 by <a href="https://glidersports.com/">Glidersports Dev Team</a>.<br/>
+    Made with 💜 by <a href="https://github.com/Glidersports">Glidersports Dev Team</a>.<br/>
     <a href="#">For Wordpress, Woocommerce</a>
     For Wordpress, Woocommerce
 </p>
