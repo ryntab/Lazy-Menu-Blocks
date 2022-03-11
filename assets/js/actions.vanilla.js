@@ -10,7 +10,6 @@ document.addEventListener("DOMContentLoaded", function(){
     }
 
     const fetcher = (item) => {
-        console.log('fetcher run');
         fetch(`${window.location.origin}/wp-json/lazyMenu/UX/block/${item.blockID}`)
             .then(response => response.json())
             .then(data => {

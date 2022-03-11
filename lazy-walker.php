@@ -47,6 +47,8 @@ public function start_el( &$output, $item, $depth = 0, $args = null, $id = 0 ) {
         $classes[] = 'active';
     }
 
+    $colorMode = get_theme_mod('lazy_colorMode_type');
+
     $design        = get_post_meta( $item->ID, '_menu_item_design', true );
     $width         = get_post_meta( $item->ID, '_menu_item_width', true );
     $height        = get_post_meta( $item->ID, '_menu_item_height', true );
@@ -254,7 +256,7 @@ public function start_el( &$output, $item, $depth = 0, $args = null, $id = 0 ) {
 
             $item_output .= '<div style="min-height: 400px;" class="' . esc_attr( $dropdown_classes ) . '">
             <div class="bg section-bg fill bg-fill  bg-loaded">
-                <div class="loading-spin centered">
+                <div class="loading-spin centered dark'. $colorMode .'">
                 </div>
             </div>';
             $item_output .= '</div>';

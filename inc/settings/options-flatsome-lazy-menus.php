@@ -24,6 +24,22 @@ Flatsome_Option::add_field( 'option',  array(
 
 Flatsome_Option::add_field( 'option',  array(
 	'type'        => 'switch',
+	'settings'    => 'lazy_colorMode_type',
+	'label'       => esc_html__( 'Color Mode.', 'kirki' ),
+	'description' => __( 'Color mode of your loading indicator.', 'flatsome-admin' ),
+	'section'     => 'lazy_menu',
+	'default'     => 'on',
+	'priority'    => 10,
+	'choices'     => [
+		'on'  => esc_html__( 'Dark', 'kirki' ),
+		'off' => esc_html__( 'Light', 'kirki' ),
+	],
+));
+
+
+
+Flatsome_Option::add_field( 'option',  array(
+	'type'        => 'switch',
 	'settings'    => 'lazy_js_type',
 	'label'       => esc_html__( 'Javascript Type.', 'kirki' ),
 	'description' => __( 'If you are not using Jquery in your Flatsome theme you can enable a no-dependecy version of this plugin.', 'flatsome-admin' ),
