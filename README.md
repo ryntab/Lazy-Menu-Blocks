@@ -4,6 +4,7 @@
 
 # Lazy Load Flatsome Mega Menu UX Blocks 😴
 - Save bandwith with style, and lazy load mega menu UX blocks on interaction through the Rest-API
+- Dark / Light mode support
 - Supports Acato's WP REST Caching.
 
 <p align="center">
